@@ -86,3 +86,67 @@ body {
     background: url('images/admin.png') no-repeat center center/cover;
 }
 
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* Notification Icon */
+.notification {
+    margin-right: 20px;
+}
+
+.notification img {
+    width: 24px; /* Adjust as needed */
+    height: 24px;
+    cursor: pointer;
+}
+
+/* Profile Avatar */
+.profile img {
+    width: 40px; /* Adjust avatar size */
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Overview Section */
+.overview {
+    background: rgba(0, 0, 0, 0.5); /* Dark transparent background */
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    width: 90%;
+    margin: 20px auto;
+}
+
+.overview h2 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+}
+
+.overview-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.overview-item {
+    flex: 1;
+}
+
+.overview-item strong {
+    display: block;
+    font-size: 16px;
+}
+
+.overview-item .count {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff; 
+}
