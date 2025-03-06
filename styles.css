@@ -1,0 +1,88 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Logo Styles */
+.logo {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    padding: 10px 0;
+}
+
+.logo img {
+    width: 150px; /* Adjust the size as needed */
+    height: auto;
+}
+
+/* Container to align sidebar and main content */
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 200px; /* Adjusted to match HP laptop desktop */
+    background-color: #100020;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures space between menu and logout */
+}
+
+/* Sidebar Menu */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Makes sure menu stays at the top */
+}
+
+.sidebar ul li {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.sidebar ul li img {
+    width: 20px;
+    margin-right: 10px;
+    filter: invert(1); /* Make icons white */
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+/* Logout Icon */
+.logout {
+    margin-top: auto; /* Pushes it to the bottom */
+    padding-top: 20px;
+}
+
+.logout a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logout img {
+    width: 20px;
+    filter: invert(1);
+}
+
+
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    background: url('images/admin.png') no-repeat center center/cover;
+}
+
