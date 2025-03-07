@@ -1,10 +1,8 @@
-/* General Styles */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
 
-/* Logo Styles */
 .logo {
     display: flex;
     justify-content: left;
@@ -13,34 +11,33 @@ body {
 }
 
 .logo img {
-    width: 150px; /* Adjust the size as needed */
+    width: 150px; 
     height: auto;
 }
 
-/* Container to align sidebar and main content */
 .container {
     display: flex;
     height: 100vh;
     width: 100%;
 }
 
-/* Sidebar Styles */
+
 .sidebar {
-    width: 200px; /* Adjusted to match HP laptop desktop */
+    width: 200px; 
     background-color: #100020;
     color: white;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Ensures space between menu and logout */
+    justify-content: space-between;
 }
 
-/* Sidebar Menu */
+
 .sidebar ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    flex-grow: 1; /* Makes sure menu stays at the top */
+    flex-grow: 1; 
 }
 
 .sidebar ul li {
@@ -52,7 +49,7 @@ body {
 .sidebar ul li img {
     width: 20px;
     margin-right: 10px;
-    filter: invert(1); /* Make icons white */
+    filter: invert(1); 
 }
 
 .sidebar ul li a {
@@ -61,9 +58,9 @@ body {
     font-size: 16px;
 }
 
-/* Logout Icon */
+
 .logout {
-    margin-top: auto; /* Pushes it to the bottom */
+    margin-top: auto; 
     padding-top: 20px;
 }
 
@@ -78,45 +75,42 @@ body {
     filter: invert(1);
 }
 
+.logout span {
+    margin-left: 10px;
+}
 
 
-/* Main Content */
 .main-content {
     flex: 1;
     background: url('images/admin.png') no-repeat center center/cover;
 }
 
-/* Header Section */
 .header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding: 20px;
-    background: rgba(0, 0, 0, 0.3);
 }
 
-/* Notification Icon */
-.notification {
-    margin-right: 20px;
+.notification, .profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;  
+    height: 48px;
+    border-radius: 50%; 
 }
 
-.notification img {
-    width: 24px; /* Adjust as needed */
-    height: 24px;
-    cursor: pointer;
-}
-
-/* Profile Avatar */
-.profile img {
-    width: 40px; /* Adjust avatar size */
+.notification img, .profile img {
+    width: 40px;
     height: 40px;
-    border-radius: 50%;
     cursor: pointer;
+    border-radius: 50%;
 }
 
-/* Overview Section */
+
 .overview {
-    background: rgba(0, 0, 0, 0.5); /* Dark transparent background */
+    background: rgba(0, 0, 0, 0.5); 
     padding: 15px;
     border-radius: 10px;
     color: white;
