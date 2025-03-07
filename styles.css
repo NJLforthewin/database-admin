@@ -79,18 +79,37 @@ body {
     margin-left: 10px;
 }
 
+.container {
+    display: flex;
+    min-height: 100vh; /* Use min-height instead of height */
+    width: 100%;
+}
 
 .main-content {
     flex: 1;
     background: url('images/admin.png') no-repeat center center/cover;
+    overflow-y: auto; /* Enables scrolling */
+    max-height: 100vh; /* Prevents overflow from breaking layout */
+    padding-bottom: 20px; /* Adds spacing at the bottom */
 }
 
 .header {
+    position: sticky;
+    top: 0;
+    left: 200px; /* Matches sidebar width */
+    width: calc(100% - 200px); /* Ensures full width minus sidebar */
+    padding: 20px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 20px;
 }
+
+/* Blur effect when scrolling */
+.scrolled {
+    backdrop-filter: blur(10px); /* Blurs the background */
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+}
+
 
 .notification, .profile {
     display: flex;
@@ -144,3 +163,57 @@ body {
     font-weight: bold;
     color: #007bff; 
 }
+
+/* Hotel Performance Section */
+.hotel-performance {
+    background: rgba(0, 0, 0, 0.5); 
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    width: 90%;
+    margin: 20px auto;
+}
+
+.hotel-performance h2 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    text-align: left; /* Aligns the heading to the left */
+}
+
+.performance-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+.single {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 4px;
+    width: 230px;
+    height: 150px;
+    background: rgba(102, 89, 70, 0.2); /* Transparent brown */
+    border: 1px solid #D0D3D9;
+    box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+    border-radius: 8px;
+    backdrop-filter: blur(10px); /* Blurred effect */
+}
+
+/* Typography */
+.single h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.single p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
