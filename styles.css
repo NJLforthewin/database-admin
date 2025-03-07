@@ -5,10 +5,11 @@ body {
 
 .logo {
     display: flex;
-    justify-content: left;
-    align-items: left;
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center; /* Center items vertically */
     padding: 10px 0;
 }
+
 
 .logo img {
     width: 150px; 
@@ -99,17 +100,11 @@ body {
     left: 200px; /* Matches sidebar width */
     width: calc(100% - 200px); /* Ensures full width minus sidebar */
     padding: 20px;
-    display: flex;
+    display: flex;  
+    overflow-y: hidden;
     justify-content: flex-end;
     align-items: center;
 }
-
-/* Blur effect when scrolling */
-.scrolled {
-    backdrop-filter: blur(10px); /* Blurs the background */
-    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
-}
-
 
 .notification, .profile {
     display: flex;
@@ -126,6 +121,7 @@ body {
     cursor: pointer;
     border-radius: 50%;
 }
+
 
 
 .overview {
@@ -217,3 +213,8 @@ body {
     font-size: 14px;
 }
 
+
+.overview {
+    background: rgba(0, 0, 0, 0.5); 
+
+}
