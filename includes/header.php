@@ -1,15 +1,12 @@
 <?php
-// Include configuration
 require_once 'includes/config.php';
 
-// Set default page title if not provided
 if (!isset($pageTitle)) {
     $pageTitle = $siteTitle;
 } else {
     $pageTitle = $pageTitle . " - " . $siteTitle;
 }
 
-// Set default page CSS
 if (!isset($pageCss)) {
     $pageCss = $cssPath . "styles.css";
 }

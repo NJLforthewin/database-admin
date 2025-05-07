@@ -1,9 +1,7 @@
 <?php
-// Page-specific settings
 $pageTitle = "Rates Management";
 $pageCss = "css/rates.css";
 
-// Define room rate data (these could later be replaced with database queries)
 $roomRates = [
     [
         'room_type' => 'Single Room',

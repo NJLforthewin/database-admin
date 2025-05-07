@@ -1,82 +1,142 @@
 <?php
-// Page-specific settings
 $pageTitle = "Reservation Management";
 $pageCss = "css/reservation.css";
 
-// Define reservation data (these could later be replaced with database queries)
+// Sample data - you can replace this with your actual data source
 $reservations = [
     [
-        'id' => 'RES-001',
-        'guest_name' => 'John Doe',
+        'id' => '#5644',
+        'name' => 'Alexander',
+        'room_number' => 'A647',
+        'total_amount' => 467,
+        'amount_paid' => 200,
         'room_type' => 'Deluxe Room',
-        'room_number' => '303',
-        'check_in' => '2023-08-15',
-        'check_out' => '2023-08-20',
-        'guests' => 2,
-        'status' => 'Confirmed',
-        'payment' => 'Paid',
-        'total' => 799.95
+        'status' => 'Check In',
+        'payment_status' => 'Partially'
     ],
     [
-        'id' => 'RES-002',
-        'guest_name' => 'Jane Smith',
+        'id' => '#6112',
+        'name' => 'Pegasus',
+        'room_number' => 'A456',
+        'total_amount' => 645,
+        'amount_paid' => 250,
         'room_type' => 'Single Room',
-        'room_number' => '105',
-        'check_in' => '2023-08-10',
-        'check_out' => '2023-08-12',
-        'guests' => 1,
-        'status' => 'Checked In',
-        'payment' => 'Paid',
-        'total' => 179.98
-    ],
-    [
-        'id' => 'RES-003',
-        'guest_name' => 'Michael Johnson',
-        'room_type' => 'VIP Suite',
-        'room_number' => '501',
-        'check_in' => '2023-08-18',
-        'check_out' => '2023-08-25',
-        'guests' => 3,
         'status' => 'Pending',
-        'payment' => 'Not Paid',
-        'total' => 2099.93
+        'payment_status' => 'Partially'
     ],
     [
-        'id' => 'RES-004',
-        'guest_name' => 'Emily Wilson',
+        'id' => '#6141',
+        'name' => 'Martin',
+        'room_number' => 'A645',
+        'total_amount' => 686,
+        'amount_paid' => 686,
         'room_type' => 'Double Room',
-        'room_number' => '210',
-        'check_in' => '2023-08-05',
-        'check_out' => '2023-08-08',
-        'guests' => 2,
-        'status' => 'Completed',
-        'payment' => 'Paid',
-        'total' => 359.97
+        'status' => 'Pending',
+        'payment_status' => 'Paid'
+    ],
+    [
+        'id' => '#8535',
+        'name' => 'Cecil',
+        'room_number' => 'A684',
+        'total_amount' => 8413,
+        'amount_paid' => 8413,
+        'room_type' => 'VIP Suites',
+        'status' => 'Check Out',
+        'payment_status' => 'Paid'
+    ],
+    [
+        'id' => '#6541',
+        'name' => 'Luke',
+        'room_number' => 'B464',
+        'total_amount' => 841,
+        'amount_paid' => 0,
+        'room_type' => 'VIP Suites',
+        'status' => 'Booked',
+        'payment_status' => 'Unpaid'
+    ],
+    [
+        'id' => '#9846',
+        'name' => 'Yadrin',
+        'room_number' => 'C648',
+        'total_amount' => 684,
+        'amount_paid' => 300,
+        'room_type' => 'Double Room',
+        'status' => 'Check In',
+        'payment_status' => 'Partially'
+    ],
+    [
+        'id' => '#4921',
+        'name' => 'Kiand',
+        'room_number' => 'D644',
+        'total_amount' => 984,
+        'amount_paid' => 0,
+        'room_type' => 'Deluxe Room',
+        'status' => 'Check In',
+        'payment_status' => 'Unpaid'
+    ],
+    [
+        'id' => '#4921',
+        'name' => 'Kiand',
+        'room_number' => 'D644',
+        'total_amount' => 984,
+        'amount_paid' => 984,
+        'room_type' => 'Deluxe Room',
+        'status' => 'Check Out',
+        'payment_status' => 'Paid'
+    ],
+    [
+        'id' => '#9841',
+        'name' => 'Turen',
+        'room_number' => 'B641',
+        'total_amount' => 984,
+        'amount_paid' => 984,
+        'room_type' => 'Deluxe Room',
+        'status' => 'Pending',
+        'payment_status' => 'Paid'
+    ],
+    [
+        'id' => '#9841',
+        'name' => 'Turen',
+        'room_number' => 'B641',
+        'total_amount' => 984,
+        'amount_paid' => 0,
+        'room_type' => 'Deluxe Room',
+        'status' => 'Pending',
+        'payment_status' => 'Unpaid'
+    ],
+    [
+        'id' => '#3350',
+        'name' => 'Michael',
+        'room_number' => 'C301',
+        'total_amount' => 750,
+        'amount_paid' => 250,
+        'room_type' => 'Double Room',
+        'status' => 'Booked',
+        'payment_status' => 'Partially'
+    ],
+    [
+        'id' => '#4433',
+        'name' => 'Emma',
+        'room_number' => 'A201',
+        'total_amount' => 520,
+        'amount_paid' => 520,
+        'room_type' => 'Single Room',
+        'status' => 'Check Out',
+        'payment_status' => 'Paid'
     ]
 ];
 
-// Reservation statistics
-$reservationStats = [
-    'total' => 125,
-    'confirmed' => 85,
-    'pending' => 25,
-    'cancelled' => 15,
-    'today_checkin' => 12,
-    'today_checkout' => 8
-];
+$headerExtras = '<script src="js/reservation.js"></script>';
 
-// Include header
 include 'includes/header.php';
-
-// Include sidebar
 include 'includes/sidebar.php';
+
 ?>
 
 <div class="main-content">
     <div class="header">
         <div class="notification">
-            <img src="<?php echo $imagesPath; ?>notification.png" alt="Notification Icon">
-            <!-- Notification Container -->
+            <img src="<?php echo $imagesPath; ?>Notification.png" alt="Notification Icon">
             <div class="notification-container">
                 <h3>Notifications</h3>
                 <ul>
@@ -92,167 +152,85 @@ include 'includes/sidebar.php';
         </div>
     </div>
     
-    <!-- Reservation Content -->
     <div class="reservation-section">
-        <h2>Reservation Management</h2>
-        
-        <!-- Reservation Statistics -->
-        <div class="reservation-stats">
-            <div class="stat-box">
-                <h3>Total Reservations</h3>
-                <p class="stat-value"><?php echo $reservationStats['total']; ?></p>
+        <div class="action-buttons">
+            <div class="left-actions">
+                <button class="action-btn check-in">Check In</button>
+                <button class="action-btn check-out">Check out</button>
+                <button class="action-btn edit-res">Edit Reservation</button>
             </div>
-            <div class="stat-box">
-                <h3>Confirmed</h3>
-                <p class="stat-value"><?php echo $reservationStats['confirmed']; ?></p>
-            </div>
-            <div class="stat-box">
-                <h3>Pending</h3>
-                <p class="stat-value"><?php echo $reservationStats['pending']; ?></p>
-            </div>
-            <div class="stat-box">
-                <h3>Cancelled</h3>
-                <p class="stat-value"><?php echo $reservationStats['cancelled']; ?></p>
-            </div>
-            <div class="stat-box">
-                <h3>Today's Check-ins</h3>
-                <p class="stat-value"><?php echo $reservationStats['today_checkin']; ?></p>
-            </div>
-            <div class="stat-box">
-                <h3>Today's Check-outs</h3>
-                <p class="stat-value"><?php echo $reservationStats['today_checkout']; ?></p>
+            
+            <div class="search-controls">
+                <button class="filter-btn"><i class="filter-icon"></i> Filter</button>
+                <div class="search-box">
+                    <input type="text" placeholder="Search by room number" id="reservation-search">
+                    <i class="search-icon"></i>
+                </div>
             </div>
         </div>
         
-        <!-- Reservation Controls -->
-        <div class="reservation-controls">
-            <button class="add-res-btn">Add New Reservation</button>
-            <div class="search-filter">
-                <input type="text" placeholder="Search reservations..." class="search-input">
-                <select class="status-filter">
-                    <option value="all">All Statuses</option>
-                    <option value="confirmed">Confirmed</option>
-                    <option value="pending">Pending</option>
-                    <option value="checked-in">Checked In</option>
-                    <option value="completed">Completed</option>
-                    <option value="cancelled">Cancelled</option>
-                </select>
-                <input type="date" class="date-filter" placeholder="Filter by date">
-            </div>
+        <div class="reservation-table-container">
+            <table class="reservation-table">
+                <thead>
+                    <tr>
+                        <th>Reservation ID</th>
+                        <th>Name</th>
+                        <th>Room Number</th>
+                        <th>Total amount</th>
+                        <th>Amount paid</th>
+                        <th>Room Type</th>
+                        <th>Status</th>
+                        <th>Payment Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="reservation-table-body">
+                    <?php foreach (array_slice($reservations, 0, 10) as $reservation): ?>
+                    <tr class="reservation-row">
+                        <td><?php echo $reservation['id']; ?></td>
+                        <td><?php echo $reservation['name']; ?></td>
+                        <td><?php echo $reservation['room_number']; ?></td>
+                        <td>$ <?php echo $reservation['total_amount']; ?></td>
+                        <td>$ <?php echo $reservation['amount_paid']; ?></td>
+                        <td><?php echo $reservation['room_type']; ?></td>
+                        <td>
+                            <span class="status-indicator <?php echo strtolower(str_replace(' ', '-', $reservation['status'])); ?>">
+                                <?php echo $reservation['status']; ?>
+                            </span>
+                        </td>
+                        <td><?php echo $reservation['payment_status']; ?></td>
+                        <td>
+                            <div class="action-menu">
+                                <span class="action-dots">⋮</span>
+                                <div class="action-dropdown">
+                                    <a href="javascript:void(0);" class="view-details">View Details</a>
+                                    <a href="javascript:void(0);" class="edit-reservation">Edit</a>
+                                    <a href="javascript:void(0);" class="cancel-reservation">Cancel</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
         
-        <!-- Reservation Table -->
-        <table class="reservation-table">
-            <thead>
-                <tr>
-                    <th>Reservation ID</th>
-                    <th>Guest Name</th>
-                    <th>Room Type</th>
-                    <th>Room Number</th>
-                    <th>Check-In</th>
-                    <th>Check-Out</th>
-                    <th>Guests</th>
-                    <th>Status</th>
-                    <th>Payment</th>
-                    <th>Total</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($reservations as $reservation): ?>
-                <tr>
-                    <td><?php echo $reservation['id']; ?></td>
-                    <td><?php echo $reservation['guest_name']; ?></td>
-                    <td><?php echo $reservation['room_type']; ?></td>
-                    <td><?php echo $reservation['room_number']; ?></td>
-                    <td><?php echo $reservation['check_in']; ?></td>
-                    <td><?php echo $reservation['check_out']; ?></td>
-                    <td><?php echo $reservation['guests']; ?></td>
-                    <td><span class="status-<?php echo strtolower($reservation['status']); ?>"><?php echo $reservation['status']; ?></span></td>
-                    <td><?php echo $reservation['payment']; ?></td>
-                    <td>$<?php echo number_format($reservation['total'], 2); ?></td>
-                    <td class="actions">
-                        <button class="view-btn">View</button>
-                        <button class="edit-btn">Edit</button>
-                        <button class="cancel-btn">Cancel</button>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-        
-        <!-- Pagination -->
         <div class="pagination">
-            <button class="prev-page">Previous</button>
-            <span class="page-numbers">
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-            </span>
-            <button class="next-page">Next</button>
+            <button class="pagination-btn prev" id="prev-page">Previous</button>
+            <div class="page-numbers" id="page-numbers">
+                <a href="javascript:void(0);" class="active">1</a>
+                <?php if (count($reservations) > 10): ?>
+                <a href="javascript:void(0);">2</a>
+                <?php endif; ?>
+            </div>
+            <button class="pagination-btn next" id="next-page">Next</button>
         </div>
     </div>
 </div>
 
 <?php
-// Add page-specific scripts
-$pageScripts = <<<SCRIPT
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const notificationIcon = document.querySelector(".notification img");
-        const notificationContainer = document.querySelector(".notification-container");
+$pageScripts = '<script>document.addEventListener("DOMContentLoaded", function() { initializeReservationData(' . json_encode($reservations) . '); });</script>';
 
-        notificationIcon.addEventListener("click", function (event) {
-            event.stopPropagation(); // Prevents click from bubbling up
-            notificationContainer.classList.toggle("active");
-        });
 
-        document.addEventListener("click", function (event) {
-            if (!notificationContainer.contains(event.target) && event.target !== notificationIcon) {
-                notificationContainer.classList.remove("active");
-            }
-        });
-        
-        // Additional reservation page functionality
-        const addResBtn = document.querySelector('.add-res-btn');
-        if (addResBtn) {
-            addResBtn.addEventListener('click', function() {
-                alert('Add new reservation form would appear here');
-            });
-        }
-        
-        const viewButtons = document.querySelectorAll('.view-btn');
-        viewButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const row = this.closest('tr');
-                const resId = row.cells[0].textContent;
-                alert(`View details for reservation \${resId}`);
-            });
-        });
-        
-        const editButtons = document.querySelectorAll('.edit-btn');
-        editButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const row = this.closest('tr');
-                const resId = row.cells[0].textContent;
-                alert(`Edit form for reservation \${resId} would appear here`);
-            });
-        });
-        
-        const cancelButtons = document.querySelectorAll('.cancel-btn');
-        cancelButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const row = this.closest('tr');
-                const resId = row.cells[0].textContent;
-                if (confirm(`Are you sure you want to cancel reservation \${resId}?`)) {
-                    alert(`Reservation \${resId} would be cancelled here`);
-                }
-            });
-        });
-    });
-</script>
-SCRIPT;
-
-// Include footer
 include 'includes/footer.php';
 ?>

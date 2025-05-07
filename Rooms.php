@@ -1,10 +1,9 @@
 <?php
-// Page-specific settings
 $pageTitle = "Room Management";
 $pageCss = "css/rooms.css";
-$useChartJs = true; // We need Chart.js on this page
 
-// Define room data (these could later be replaced with database queries)
+$headerExtras = '<script src="js/rooms.js"></script>';
+
 $rooms = [
     [
         'room_number' => '101',
@@ -52,6 +51,42 @@ $rooms = [
         'last_cleaned' => '2023-08-05'
     ],
     [
+        'room_number' => '302',
+        'type' => 'Deluxe Room',
+        'floor' => '3',
+        'price' => 159.99,
+        'status' => 'Cleaning',
+        'features' => 'Wi-Fi, TV, Air Conditioning, Mini Bar, Balcony, City View',
+        'last_cleaned' => '2023-08-09'
+    ],
+    [
+        'room_number' => '303',
+        'type' => 'Deluxe Room',
+        'floor' => '3',
+        'price' => 159.99,
+        'status' => 'Available',
+        'features' => 'Wi-Fi, TV, Air Conditioning, Mini Bar, Balcony, City View',
+        'last_cleaned' => '2023-08-10'
+    ],
+    [
+        'room_number' => '401',
+        'type' => 'Double Room',
+        'floor' => '4',
+        'price' => 119.99,
+        'status' => 'Occupied',
+        'features' => 'Wi-Fi, TV, Air Conditioning, Mini Fridge, Balcony',
+        'last_cleaned' => '2023-08-06'
+    ],
+    [
+        'room_number' => '402',
+        'type' => 'Double Room',
+        'floor' => '4',
+        'price' => 119.99,
+        'status' => 'Occupied',
+        'features' => 'Wi-Fi, TV, Air Conditioning, Mini Fridge, Balcony',
+        'last_cleaned' => '2023-08-07'
+    ],
+    [
         'room_number' => '501',
         'type' => 'VIP Suite',
         'floor' => '5',
@@ -59,10 +94,18 @@ $rooms = [
         'status' => 'Available',
         'features' => 'Wi-Fi, Smart TV, Air Conditioning, Full Bar, Balcony, Ocean View, Jacuzzi',
         'last_cleaned' => '2023-08-10'
+    ],
+    [
+        'room_number' => '502',
+        'type' => 'VIP Suite',
+        'floor' => '5',
+        'price' => 259.99,
+        'status' => 'Occupied',
+        'features' => 'Wi-Fi, Smart TV, Air Conditioning, Full Bar, Balcony, Ocean View, Jacuzzi',
+        'last_cleaned' => '2023-08-09'
     ]
 ];
 
-// Room status statistics
 $roomStats = [
     'total' => 100,
     'available' => 45,
@@ -71,36 +114,35 @@ $roomStats = [
     'cleaning' => 2
 ];
 
-// Room types
-$roomTypes = [
-    'Single Room' => 30,
-    'Double Room' => 40,
-    'Deluxe Room' => 20,
-    'VIP Suite' => 10
-];
+// Convert data to JSON for JavaScript
+$roomsJson = json_encode($rooms);
 
-// Include header
 include 'includes/header.php';
-
-// Include sidebar
 include 'includes/sidebar.php';
 ?>
 
 <div class="main-content">
     <div class="header">
         <div class="notification">
-            <a href="notification.php"><img src="<?php echo $imagesPath; ?>notification.png" alt="Notification Icon"></a>
+            <img src="<?php echo $imagesPath; ?>Notification.png" alt="Notification Icon">
+            <div class="notification-container">
+                <h3>Notifications</h3>
+                <ul>
+                    <li class="new">Room 302 cleaning completed</li>
+                    <li class="new">Maintenance request: Room 202</li>
+                    <li>Room 101 is now available</li>
+                    <li>New booking: Room 501</li>
+                </ul>
+            </div>
         </div>
         <div class="profile">
             <a href="profile.php"><img src="<?php echo $imagesPath; ?>Avatar.png" alt="Profile"></a>
         </div>
     </div>
     
-    <!-- Rooms Content -->
     <div class="rooms-section">
         <h2>Room Management</h2>
         
-        <!-- Room Statistics -->
         <div class="room-stats">
             <div class="stat-box">
                 <h3>Total Rooms</h3>
@@ -124,13 +166,6 @@ include 'includes/sidebar.php';
             </div>
         </div>
         
-        <!-- Room Type Distribution Chart -->
-        <div class="room-type-chart">
-            <h3>Room Type Distribution</h3>
-            <canvas id="roomTypeChart" height="200"></canvas>
-        </div>
-        
-        <!-- Room Controls -->
         <div class="room-controls">
             <button class="add-room-btn">Add New Room</button>
             <div class="search-filter">
@@ -160,148 +195,87 @@ include 'includes/sidebar.php';
             </div>
         </div>
         
-        <!-- Room Table -->
-        <table class="room-table">
-            <thead>
-                <tr>
-                    <th>Room No.</th>
-                    <th>Type</th>
-                    <th>Floor</th>
-                    <th>Price/Night</th>
-                    <th>Status</th>
-                    <th>Features</th>
-                    <th>Last Cleaned</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($rooms as $room): ?>
-                <tr>
-                    <td><?php echo $room['room_number']; ?></td>
-                    <td><?php echo $room['type']; ?></td>
-                    <td><?php echo $room['floor']; ?></td>
-                    <td>$<?php echo number_format($room['price'], 2); ?></td>
-                    <td><span class="status-<?php echo strtolower($room['status']); ?>"><?php echo $room['status']; ?></span></td>
-                    <td><?php echo $room['features']; ?></td>
-                    <td><?php echo $room['last_cleaned']; ?></td>
-                    <td class="actions">
-                        <button class="view-btn">View</button>
-                        <button class="edit-btn">Edit</button>
-                        <?php if ($room['status'] == 'Available'): ?>
-                        <button class="book-btn">Book</button>
-                        <?php elseif ($room['status'] == 'Occupied'): ?>
-                        <button class="checkout-btn">Check-out</button>
-                        <?php else: ?>
-                        <button class="status-btn">Change Status</button>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+        <div class="room-table-container">
+            <table class="room-table">
+                <thead>
+                    <tr>
+                        <th>Room No.</th>
+                        <th>Type</th>
+                        <th>Floor</th>
+                        <th>Price/Night</th>
+                        <th>Status</th>
+                        <th>Features</th>
+                        <th>Last Cleaned</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach (array_slice($rooms, 0, 10) as $room): ?>
+                    <tr>
+                        <td><?php echo $room['room_number']; ?></td>
+                        <td><?php echo $room['type']; ?></td>
+                        <td><?php echo $room['floor']; ?></td>
+                        <td>$<?php echo number_format($room['price'], 2); ?></td>
+                        <td><span class="status-<?php echo strtolower($room['status']); ?>"><?php echo $room['status']; ?></span></td>
+                        <td><?php echo $room['features']; ?></td>
+                        <td><?php echo $room['last_cleaned']; ?></td>
+                        <td class="actions">
+                            <button class="view-btn">View</button>
+                            <button class="edit-btn">Edit</button>
+                            <?php if ($room['status'] == 'Available'): ?>
+                            <button class="book-btn">Book</button>
+                            <?php elseif ($room['status'] == 'Occupied'): ?>
+                            <button class="checkout-btn">Check-out</button>
+                            <?php else: ?>
+                            <button class="status-btn">Change Status</button>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
         
-        <!-- Pagination -->
         <div class="pagination">
             <button class="prev-page">Previous</button>
-            <span class="page-numbers">
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-            </span>
+            <div class="page-numbers">
+                <a href="javascript:void(0);" class="active">1</a>
+                <?php if (count($rooms) > 10): ?>
+                <a href="javascript:void(0);">2</a>
+                <?php endif; ?>
+            </div>
             <button class="next-page">Next</button>
         </div>
     </div>
 </div>
-<?php
-// Prepare data for the chart - create JSON strings for the chart data
-$roomTypeLabels = json_encode(array_keys($roomTypes));
-$roomTypeData = json_encode(array_values($roomTypes));
 
-// Add page-specific scripts
-$pageScripts = <<<SCRIPT
 <script>
+    // Prepare room data for JavaScript
+    window.roomsData = <?php echo $roomsJson; ?>;
+    
     document.addEventListener('DOMContentLoaded', function() {
-        // Room Type Distribution Chart
-        const roomTypeCtx = document.getElementById('roomTypeChart').getContext('2d');
-        new Chart(roomTypeCtx, {
-            type: 'pie',
-            data: {
-                labels: {$roomTypeLabels},
-                datasets: [{
-                    data: {$roomTypeData},
-                    backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'right',
-                    }
+        // Notification functionality
+        const notificationIcon = document.querySelector(".notification img");
+        const notificationContainer = document.querySelector(".notification-container");
+
+        if (notificationIcon && notificationContainer) {
+            notificationIcon.addEventListener("click", function(event) {
+                event.stopPropagation();
+                notificationContainer.classList.toggle("active");
+            });
+            
+            document.addEventListener("click", function(event) {
+                if (!notificationContainer.contains(event.target) && event.target !== notificationIcon) {
+                    notificationContainer.classList.remove("active");
                 }
-            }
-        });
-        
-        // Button event listeners
-        const addRoomBtn = document.querySelector('.add-room-btn');
-        if (addRoomBtn) {
-            addRoomBtn.addEventListener('click', function() {
-                alert('Add new room form would appear here');
             });
         }
         
-        const viewButtons = document.querySelectorAll('.view-btn');
-        viewButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const row = this.closest('tr');
-                const roomNumber = row.cells[0].textContent;
-                alert(`View details for room \${roomNumber}`);
-            });
-        });
-        
-        const editButtons = document.querySelectorAll('.edit-btn');
-        editButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const row = this.closest('tr');
-                const roomNumber = row.cells[0].textContent;
-                alert(`Edit form for room \${roomNumber} would appear here`);
-            });
-        });
-        
-        const bookButtons = document.querySelectorAll('.book-btn');
-        bookButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const row = this.closest('tr');
-                const roomNumber = row.cells[0].textContent;
-                alert(`Booking form for room \${roomNumber} would appear here`);
-            });
-        });
-        
-        const checkoutButtons = document.querySelectorAll('.checkout-btn');
-        checkoutButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const row = this.closest('tr');
-                const roomNumber = row.cells[0].textContent;
-                if (confirm(`Are you sure you want to check-out room \${roomNumber}?`)) {
-                    alert(`Room \${roomNumber} would be checked out here`);
-                }
-            });
-        });
-          
-        const statusButtons = document.querySelectorAll('.status-btn');
-        statusButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const row = this.closest('tr');
-                const roomNumber = row.cells[0].textContent;
-                const currentStatus = row.cells[4].textContent;
-                alert(`Status change form for room \${roomNumber} (currently \${currentStatus}) would appear here`);
-            });
-        });
+        // Initialize room data
+        initializeRoomData(window.roomsData);
     });
 </script>
-SCRIPT;
 
-// Include footer
+<?php
 include 'includes/footer.php';
 ?>

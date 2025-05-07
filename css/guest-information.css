@@ -1,0 +1,275 @@
+.main-content {
+    position: relative;
+}
+
+.main-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    background-image: url('../images/background.png');
+    background-blend-mode: overlay;
+    z-index: -1;
+}
+
+/* Fix for pagination buttons */
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-btn:not(:disabled) {
+    cursor: pointer;
+}
+
+/* Make sure buttons are clickable */
+.pagination-btn {
+    pointer-events: auto;
+}
+
+.guest-section {
+    padding: 20px;
+    color: white;
+}
+
+.guest-section h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.controls {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-box {
+    position: relative;
+    margin-right: 10px;
+}
+
+.search-box input {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 8px 12px;
+    width: 200px;
+}
+
+.search-box input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.filter-select {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 8px 12px;
+    margin-right: 10px;
+    appearance: none;
+    cursor: pointer;
+}
+
+.filter-select option {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+.add-guest-btn {
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.add-guest-btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.guest-table-container {
+    margin-bottom: 20px;
+    overflow-x: auto;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+}
+
+.guest-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+}
+
+.guest-table th,
+.guest-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.guest-table th {
+    background-color: rgba(0, 0, 0, 0.2);
+    font-weight: normal;
+}
+
+.guest-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.checked-in {
+    background-color: #28a745;
+    color: white;
+}
+
+.checked-out {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.reserved {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.actions {
+    display: flex;
+}
+
+.action-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 4px 8px;
+    margin-right: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.action-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.action-btn.view {
+    background-color: rgba(0, 123, 255, 0.7);
+}
+
+.action-btn.edit {
+    background-color: rgba(255, 193, 7, 0.7);
+}
+
+.action-btn.delete {
+    background-color: rgba(220, 53, 69, 0.7);
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+.pagination-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.page-numbers {
+    display: flex;
+    margin: 0 10px;
+}
+
+.page-numbers a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.page-numbers a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.page-numbers a.active {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.notification {
+    position: relative;
+    cursor: pointer;
+}
+
+.notification-container {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 250px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1000;
+}
+
+.notification-container.active {
+    display: block;
+}
+
+.notification-container h3 {
+    margin: 0;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    font-size: 16px;
+}
+
+.notification-container ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.notification-container ul li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    font-size: 14px;
+}
+
+.notification-container ul li:last-child {
+    border-bottom: none;
+}
+
+.notification-container ul li.new {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
